@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="employlist.css">
+</head>
+<body>
+    <div id="header">
+     <div id="navbar">
+        <a href="index.html">Home</a>
+        <a href="employlist.html">Employlist</a>
+        <a href="register.html">Registration</a>
+        <a href="login.html">Login</a>
+     </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Image</th>
+                <th>gender</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+           
+        </tbody>
+    </table>
+
+</body>
+</html>
+<script >
+    let tbody=document.getElementById("tbody") 
+    fetch('https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees')
+    .then((res)=>res.json())
+    .then((data)=>
+    
+       data.data.map((ele)=>{
+        console.log(ele)
+        tbody.innerHTML+=`
+        <tr>
+            <td>${ele.name}</td>
+            <td>${ele.department}</td>
+            <td>${ele.salary}</td>
+            <td><img src='${ele.image}'/></td>
+            <td>${ele.gender}</td>
+            </tr>
+        `
+       })
+    
+    )
+
+</script>
